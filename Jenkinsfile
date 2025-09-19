@@ -24,8 +24,6 @@ pipeline {
       }
     }
     stage('Security Scan') {
-      steps {
-      }
     }
     stage('Deploy to Staging') {
       steps {
@@ -33,8 +31,6 @@ pipeline {
       }
     }
     stage('Integration Tests on Staging') {
-      steps {
-      }
     }
     stage('Deploy to Production') {
       steps {
