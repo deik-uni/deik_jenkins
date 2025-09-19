@@ -24,6 +24,9 @@ pipeline {
       }
     }
     stage('Security Scan') {
+      steps {
+        echo 'Scanning'
+      }
     }
     stage('Deploy to Staging') {
       steps {
@@ -31,6 +34,9 @@ pipeline {
       }
     }
     stage('Integration Tests on Staging') {
+      steps {
+        echo 'Testing'
+      }
     }
     stage('Deploy to Production') {
       steps {
