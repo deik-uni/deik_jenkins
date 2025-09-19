@@ -12,25 +12,28 @@ pipeline {
         echo 'Compile the code and generate any necessary artefacts'
       }
     }
-    stage('Test') {
+    stage('Unit & Integration Tests') {
       steps {
         echo 'Unit tests'
         echo 'Integration tests'
       }
     }
-    stage('Code Quality Check') {
+    stage('Code Analysis') {
       steps {
         echo 'Check the quality of the code'
       }
     }
-    stage('Deploy') {
+    stage('Security Scan') {
+      steps {
+      }
+    }
+    stage('Deploy to Staging') {
       steps {
         echo "Deploy the application to testing environment: $TESTING_ENVIRONMENT"
       }
     }
-    stage('Approval') {
+    stage('Integration Tests on Staging') {
       steps {
-        sleep time: 10, unit: 'SECONDS'
       }
     }
     stage('Deploy to Production') {
