@@ -6,42 +6,26 @@ pipeline {
     PRODUCTION_ENVIRONMENT = 'Daniel Eikelis'
   }
   stages {
-    stage('Build') {
-      steps {
-        echo "Fetch the source code from the directory path: $DIRECTORY_PATH"
-        echo 'Compile the code and generate any necessary artefacts'
-      }
+    stage('Build') { 
+      steps { echo "Build: compile & package (tool: Maven)" } 
     }
-    stage('Unit & Integration Tests') {
-      steps {
-        echo 'Unit tests'
-        echo 'Integration tests'
-      }
+    stage('Unit & Integration Tests') { 
+      steps { echo "Unit & Integration Tests: run tests (tools: JUnit, Cypress)"} 
     }
-    stage('Code Analysis') {
-      steps {
-        echo 'Check the quality of the code'
-      }
+    stage('Code Analysis') { 
+      steps { echo "Code Analysis: static analysis (tool: SonarQube/SonarCloud)"} 
     }
-    stage('Security Scan') {
-      steps {
-        echo 'Scanning'
-      }
+    stage('Security Scan') { 
+      steps { echo "Security Scan: vulnerability scan (tool: OWASP Dependency-Check)"} 
     }
-    stage('Deploy to Staging') {
-      steps {
-        echo "Deploy the application to testing environment: $TESTING_ENVIRONMENT"
-      }
+    stage('Deploy to Staging') { 
+      steps { echo "Deploy to Staging: push app to staging (tools: Docker + Ansible)"} 
     }
-    stage('Integration Tests on Staging') {
-      steps {
-        echo 'Testing'
-      }
+    stage('Integration Tests on Staging') { 
+      steps { echo "Integration Tests on Staging: E2E checks (tool: Postman/Newman)"} 
     }
-    stage('Deploy to Production') {
-      steps {
-        echo "Deploying the application to the production environment: $PRODUCTION_ENVIRONMENT"
-      }
+    stage('Deploy to Production') { 
+      steps { echo "Deploy to Production: promote release (tool: Ansible/Kubernetes)"} 
     }
   }
   post {
